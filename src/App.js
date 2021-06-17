@@ -1,25 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import {API,Auth} from 'aws-amplify'
+import { AmplifyChatbot, withAuthenticator } from '@aws-amplify/ui-react';
 
 function App() {
+  async function getInfo (){
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
+    console.log("🚀 ~ file: App.js ~ line 10 ~ getInfo ~ token", token)
+    const request = {
+      headers: {Authorization:token},
+    }
+    const data = await API.get("hello","/hello",request);
+    console.log("🚀 ~ file: App.js ~ line 15 ~ getInfo ~ data", data)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <AmplifyChatbot
+       botName="yourBotName"
+       botTitle="My ChatBot"
+         welcomeMessage="Hello, how can I help you?"
+  />
+        <button
+          onClick={getInfo}
         >
-          Learn React
-        </a>
-      </header>
+         Get Info User
+        </button>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

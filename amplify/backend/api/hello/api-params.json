@@ -1,0 +1,42 @@
+{
+  "paths": [
+    {
+      "name": "/hello",
+      "lambdaFunction": "amplifydemo",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/hello"
+    }
+  ],
+  "resourceName": "hello",
+  "apiName": "hello",
+  "functionArns": [
+    {
+      "lambdaFunction": "amplifydemo"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-amplifydemo-dev-145121-authRole",
+    "unAuthRoleName": "amplify-amplifydemo-dev-145121-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "amplifydemo",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
