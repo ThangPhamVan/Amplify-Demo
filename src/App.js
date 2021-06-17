@@ -1,7 +1,6 @@
-import logo from './logo.svg';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import { API, Auth } from 'aws-amplify';
 import './App.css';
-import {API,Auth} from 'aws-amplify'
-import { AmplifyChatbot, withAuthenticator } from '@aws-amplify/ui-react';
 
 function App() {
   async function getInfo (){
@@ -16,15 +15,10 @@ function App() {
   }
   return (
     <div className="App">
-        <AmplifyChatbot
-       botName="yourBotName"
-       botTitle="My ChatBot"
-         welcomeMessage="Hello, how can I help you?"
-  />
         <button
           onClick={getInfo}
         >
-         Get Info User
+         Get Info User Hello
         </button>
     </div>
   );
